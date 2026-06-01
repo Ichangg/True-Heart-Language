@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Portal – English Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">English Center – Student</div>
+    <ul class="nav-links">
+      <li><a href="student.html">Dashboard</a></li>
+      <li><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="student-container" style="padding:2rem;">
+    <h2>My Class Information</h2>
+    <div id="classInfo" class="card" style="background:rgba(255,255,255,0.12);padding:1.5rem;border-radius:12px;backdrop-filter:blur(8px);margin-bottom:2rem;">
+      <p><strong>Class:</strong> <span id="className">Loading...</span></p>
+      <p><strong>Teacher:</strong> <span id="teacherName">Loading...</span></p>
+      <p><strong>Sessions Attended:</strong> <span id="attended">0</span></p>
+      <p><strong>Sessions Missed:</strong> <span id="missed">0</span></p>
+    </div>
+    <h3>Attendance Details</h3>
+    <table class="data-table" style="width:100%;border-collapse:collapse;">
+      <thead><tr><th>Date</th><th>Status</th></tr></thead>
+      <tbody id="attendanceBody"></tbody>
+    </table>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 English Center. Student Portal.</p>
+  </footer>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/student.js"></script>
+</body>
+</html>

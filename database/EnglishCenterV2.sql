@@ -241,6 +241,7 @@ GO
 -- =============================================
 
 -- Users (mật khẩu đều là "123456")
+
 INSERT INTO users (full_name, email, phone, password_hash, role) VALUES
 (N'Nguyễn Quản Trị', 'admin@trungtam.com',  '0901000001', '$2a$10$6yaDDNe9cMzjiEP0FxybcePOyNeRhUYhaweISjjStQgPTMPLlaQKG', 'admin'),
 (N'Trần Thị Lan',    'lan@trungtam.com',    '0901000002', '$2a$10$6yaDDNe9cMzjiEP0FxybcePOyNeRhUYhaweISjjStQgPTMPLlaQKG', 'teacher'),
@@ -305,4 +306,10 @@ SELECT 'class_teachers',            COUNT(*)              FROM class_teachers   
 SELECT 'class_students',            COUNT(*)              FROM class_students     UNION ALL
 SELECT 'parent_student',            COUNT(*)              FROM parent_student     UNION ALL
 SELECT 'system_settings',           COUNT(*)              FROM system_settings;
+
 GO
+
+SELECT DB_NAME() AS CurrentDatabase;
+DELETE FROM users
+WHERE id BETWEEN 8 AND 11;
+select * from users

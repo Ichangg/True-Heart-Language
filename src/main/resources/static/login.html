@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – English Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">English Center</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
+
+  <section class="login-section" style="display:flex;justify-content:center;align-items:center;min-height:80vh;padding:2rem;">
+    <form id="loginForm" class="card-glass" style="width:100%; max-width: 400px;">
+      <h2 style="margin-bottom:1.5rem;color:#fff;text-align:center;font-size:1.8rem;">Welcome Back</h2>
+      <div style="margin-bottom:1.2rem;">
+        <label for="username" style="color:#e0e0e0;display:block;margin-bottom:0.5rem;font-weight:500;">Username</label>
+        <input type="text" id="username" name="username" required style="width:100%;padding:0.75rem;border:1px solid rgba(255,255,255,0.2);border-radius:8px;background:rgba(0,0,0,0.2);color:#fff;outline:none;">
+      </div>
+      <div style="margin-bottom:1.5rem;">
+        <label for="password" style="color:#e0e0e0;display:block;margin-bottom:0.5rem;font-weight:500;">Password</label>
+        <input type="password" id="password" name="password" required style="width:100%;padding:0.75rem;border:1px solid rgba(255,255,255,0.2);border-radius:8px;background:rgba(0,0,0,0.2);color:#fff;outline:none;">
+      </div>
+      <button type="submit" class="cta-btn" style="width:100%;font-size:1.1rem;padding:0.8rem;">Sign In</button>
+      
+      <div class="auth-link">
+        Don't have an account? <a href="register.html">Register here</a>
+      </div>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2024 English Center. All rights reserved.</p>
+  </footer>
+
+  <script type="module" src="assets/js/api.js"></script>
+  <script type="module" src="assets/js/ui.js"></script>
+  <script type="module" src="assets/js/auth.js"></script>
+</body>
+</html>

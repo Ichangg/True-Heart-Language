@@ -60,3 +60,4 @@ Authorization: Bearer {{login.response.body.token}}
 
 ### Lấy danh sách lớp không có token - phải bị chặn
 GET {{baseUrl}}/api/classes
+

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard – English Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">English Center – Admin</div>
+    <ul class="nav-links">
+      <li><a href="admin.html">Dashboard</a></li>
+      <li><a href="login.html">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="admin-container" style="display:flex;min-height:calc(100vh - 70px);">
+    <aside class="sidebar" style="width:250px;background:rgba(255,255,255,0.08);backdrop-filter:blur(12px);padding:1rem;">
+      <ul style="list-style:none;padding:0;">
+        <li><a href="#stats" class="sidebar-link">Statistics</a></li>
+        <li><a href="#classes" class="sidebar-link">Classes</a></li>
+        <li><a href="#teachers" class="sidebar-link">Teachers</a></li>
+        <li><a href="#students" class="sidebar-link">Students</a></li>
+        <li><a href="#fees" class="sidebar-link">Fees</a></li>
+        <li><a href="#announcements" class="sidebar-link">Announcements</a></li>
+      </ul>
+    </aside>
+
+    <main class="content" style="flex:1;padding:2rem;overflow:auto;">
+      <section id="stats" class="card" style="background:rgba(255,255,255,0.12);margin-bottom:2rem;backdrop-filter:blur(8px);padding:1.5rem;border-radius:12px;">
+        <h2>Statistics Overview</h2>
+        <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;">
+          <div class="stat-card" style="background:rgba(255,255,255,0.15);padding:1rem;border-radius:8px;">
+            <h3>Total Classes</h3>
+            <p id="totalClasses">0</p>
+          </div>
+          <div class="stat-card" style="background:rgba(255,255,255,0.15);padding:1rem;border-radius:8px;">
+            <h3>Total Teachers</h3>
+            <p id="totalTeachers">0</p>
+          </div>
+          <div class="stat-card" style="background:rgba(255,255,255,0.15);padding:1rem;border-radius:8px;">
+            <h3>Total Students</h3>
+            <p id="totalStudents">0</p>
+          </div>
+          <div class="stat-card" style="background:rgba(255,255,255,0.15);padding:1rem;border-radius:8px;">
+            <h3>Revenue (This Month)</h3>
+            <p id="revenueMonth">$0</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="classes" class="card" style="background:rgba(255,255,255,0.12);margin-bottom:2rem;backdrop-filter:blur(8px);padding:1.5rem;border-radius:12px;">
+        <h2>Class Management</h2>
+        <button class="cta-btn" id="addClassBtn">Add New Class</button>
+        <table class="data-table" style="width:100%;margin-top:1rem;border-collapse:collapse;">
+          <thead><tr><th>Year</th><th>Grade</th><th>Section</th><th>Teachers</th><th>Students</th><th>Actions</th></tr></thead>
+          <tbody id="classTableBody"></tbody>
+        </table>
+      </section>
+
+      <section id="teachers" class="card" style="background:rgba(255,255,255,0.12);margin-bottom:2rem;backdrop-filter:blur(8px);padding:1.5rem;border-radius:12px;">
+        <h2>Teacher Management</h2>
+        <button class="cta-btn" id="addTeacherBtn">Add Teacher</button>
+        <table class="data-table" style="width:100%;margin-top:1rem;border-collapse:collapse;">
+          <thead><tr><th>Name</th><th>Email</th><th>Assigned Classes</th><th>Actions</th></tr></thead>
+          <tbody id="teacherTableBody"></tbody>
+        </table>
+      </section>
+
+      <section id="students" class="card" style="background:rgba(255,255,255,0.12);margin-bottom:2rem;backdrop-filter:blur(8px);padding:1.5rem;border-radius:12px;">
+        <h2>Student Management</h2>
+        <button class="cta-btn" id="addStudentBtn">Add Student</button>
+        <table class="data-table" style="width:100%;margin-top:1rem;border-collapse:collapse;">
+          <thead><tr><th>Name</th><th>Parent</th><th>Class</th><th>Attendance</th><th>Actions</th></tr></thead>
+          <tbody id="studentTableBody"></tbody>
+        </table>
+      </section>
+
+      <section id="fees" class="card" style="background:rgba(255,255,255,0.12);margin-bottom:2rem;backdrop-filter:blur(8px);padding:1.5rem;border-radius:12px;">
+        <h2>Fee Records</h2>
+        <button class="cta-btn" id="addFeeBtn">Record Payment</button>
+        <table class="data-table" style="width:100%;margin-top:1rem;border-collapse:collapse;">
+          <thead><tr><th>Student</th><th>Month</th><th>Amount Due</th><th>Discount %</th><th>Paid</th><th>Actions</th></tr></thead>
+          <tbody id="feeTableBody"></tbody>
+        </table>
+      </section>
+
+      <section id="announcements" class="card" style="background:rgba(255,255,255,0.12);margin-bottom:2rem;backdrop-filter:blur(8px);padding:1.5rem;border-radius:12px;">
+        <h2>Public Announcements</h2>
+        <button class="cta-btn" id="addAnnouncementBtn">Create Announcement</button>
+        <div id="announcementList" style="margin-top:1rem;"></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 English Center. Admin Portal.</p>
+  </footer>
+
+  <script type="module" src="assets/js/api.js"></script>
+  <script type="module" src="assets/js/ui.js"></script>
+  <script type="module" src="assets/js/admin.js"></script>
+</body>
+</html>
