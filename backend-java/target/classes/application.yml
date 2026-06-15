@@ -1,0 +1,62 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/english_center?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=utf8mb4&serverTimezone=Asia/Ho_Chi_Minh
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 0
+      idle-timeout: 10000
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+jwt:
+  secret: ${JWT_SECRET:your_jwt_secret_key_change_this}
+  refresh-secret: ${JWT_REFRESH_SECRET:your_jwt_refresh_secret_key_change_this}
+  expiration: 3600000
+  refresh-expiration: 604800000
+
+# External integrations
+zalo:
+  app-id: ${ZALO_APP_ID:}
+  app-secret: ${ZALO_APP_SECRET:}
+  access-token: ${ZALO_ACCESS_TOKEN:}
+  oa-id: ${ZALO_OA_ID:}
+
+facebook:
+  page-access-token: ${FB_PAGE_ACCESS_TOKEN:}
+  app-secret: ${FB_APP_SECRET:}
+  verify-token: ${FB_VERIFY_TOKEN:}
+
+sms:
+  api-url: ${SMS_API_URL:}
+  api-key: ${SMS_API_KEY:}
+  brand-name: ${SMS_BRAND_NAME:EnglishCenter}
+
+upload:
+  dir: ${UPLOAD_DIR:uploads}
+  max-file-size: ${MAX_FILE_SIZE:5242880}
+
+logging:
+  level:
+    com.englishcenter: INFO
+    org.hibernate.SQL: WARN
