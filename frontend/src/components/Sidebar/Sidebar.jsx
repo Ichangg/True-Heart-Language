@@ -63,7 +63,7 @@ const Sidebar = ({ menuItems }) => {
       <div className="sidebar-footer">
         <button className="nav-item logout-btn" onClick={handleLogout}>
           <span className="nav-icon">🚪</span>
-          {sidebarOpen && <span className="nav-label">Đăng</span>}
+          {sidebarOpen && <span className="nav-label">Đăng xuất</span>}
         </button>
       </div>
     </aside>
