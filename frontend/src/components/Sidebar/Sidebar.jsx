@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import useAuthStore from '../../store/authStore';
-import useUiStore from '../../store/uiStore';
-import { ROLE_LABELS } from '../../utils/constants';
-import './Sidebar.css';
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/authStore";
+import useUiStore from "../../store/uiStore";
+import { ROLE_LABELS } from "../../utils/constants";
+import "./Sidebar.css";
 
 const Sidebar = ({ menuItems }) => {
   const { user, logout } = useAuthStore();
@@ -12,11 +12,11 @@ const Sidebar = ({ menuItems }) => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
-    <aside className={`sidebar ${sidebarOpen ? 'open' : 'collapsed'}`}>
+    <aside className={`sidebar ${sidebarOpen ? "open" : "collapsed"}`}>
       {/* Logo */}
       <div className="sidebar-logo">
         <div className="logo-icon">🎓</div>
@@ -27,14 +27,14 @@ const Sidebar = ({ menuItems }) => {
           </div>
         )}
         <button className="sidebar-toggle" onClick={toggleSidebar}>
-          {sidebarOpen ? '◀' : '▶'}
+          {sidebarOpen ? "◀" : "▶"}
         </button>
       </div>
 
       {/* User Info */}
       <div className="sidebar-user">
         <div className="user-avatar">
-          {user?.full_name?.charAt(0)?.toUpperCase() || 'U'}
+          {user?.full_name?.charAt(0)?.toUpperCase() || "U"}
         </div>
         {sidebarOpen && (
           <div className="user-info">
@@ -50,7 +50,7 @@ const Sidebar = ({ menuItems }) => {
           <NavLink
             key={item.path}
             to={item.path}
-            className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+            className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
             title={item.label}
           >
             <span className="nav-icon">{item.icon}</span>
@@ -63,7 +63,7 @@ const Sidebar = ({ menuItems }) => {
       <div className="sidebar-footer">
         <button className="nav-item logout-btn" onClick={handleLogout}>
           <span className="nav-icon">🚪</span>
-          {sidebarOpen && <span className="nav-label">Đăng xuất</span>}
+          {sidebarOpen && <span className="nav-label">Đăng</span>}
         </button>
       </div>
     </aside>
