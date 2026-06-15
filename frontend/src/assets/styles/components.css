@@ -18,11 +18,12 @@
 }
 
 .btn::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: rgba(255, 255, 255, 0);
   transition: background var(--transition-fast);
+  pointer-events: none;
 }
 
 .btn:hover::after {
@@ -51,7 +52,11 @@
 }
 
 .btn-success {
-  background: linear-gradient(135deg, var(--secondary-500), var(--secondary-700));
+  background: linear-gradient(
+    135deg,
+    var(--secondary-500),
+    var(--secondary-700)
+  );
   color: white;
   box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
 }
@@ -204,7 +209,7 @@
 }
 
 .stat-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -213,10 +218,18 @@
   border-radius: var(--radius-full);
 }
 
-.stat-card.blue::before { background: var(--primary-500); }
-.stat-card.green::before { background: var(--secondary-500); }
-.stat-card.orange::before { background: var(--accent-500); }
-.stat-card.red::before { background: var(--danger-500); }
+.stat-card.blue::before {
+  background: var(--primary-500);
+}
+.stat-card.green::before {
+  background: var(--secondary-500);
+}
+.stat-card.orange::before {
+  background: var(--accent-500);
+}
+.stat-card.red::before {
+  background: var(--danger-500);
+}
 
 .stat-card:hover {
   transform: translateY(-2px);
@@ -234,10 +247,18 @@
   flex-shrink: 0;
 }
 
-.stat-card.blue .stat-icon { background: rgba(59, 130, 246, 0.15); }
-.stat-card.green .stat-icon { background: rgba(34, 197, 94, 0.15); }
-.stat-card.orange .stat-icon { background: rgba(249, 115, 22, 0.15); }
-.stat-card.red .stat-icon { background: rgba(239, 68, 68, 0.15); }
+.stat-card.blue .stat-icon {
+  background: rgba(59, 130, 246, 0.15);
+}
+.stat-card.green .stat-icon {
+  background: rgba(34, 197, 94, 0.15);
+}
+.stat-card.orange .stat-icon {
+  background: rgba(249, 115, 22, 0.15);
+}
+.stat-card.red .stat-icon {
+  background: rgba(239, 68, 68, 0.15);
+}
 
 .stat-card .stat-info {
   flex: 1;
@@ -493,7 +514,7 @@
 }
 
 .tab::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -1px;
   left: 0;
@@ -540,7 +561,15 @@
   animation: slideInRight 0.3s ease;
 }
 
-.toast-success { border-left: 4px solid var(--secondary-500); }
-.toast-error { border-left: 4px solid var(--danger-500); }
-.toast-warning { border-left: 4px solid var(--warning-500); }
-.toast-info { border-left: 4px solid var(--primary-500); }
+.toast-success {
+  border-left: 4px solid var(--secondary-500);
+}
+.toast-error {
+  border-left: 4px solid var(--danger-500);
+}
+.toast-warning {
+  border-left: 4px solid var(--warning-500);
+}
+.toast-info {
+  border-left: 4px solid var(--primary-500);
+}

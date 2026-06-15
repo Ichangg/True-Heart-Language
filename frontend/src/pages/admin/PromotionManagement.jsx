@@ -36,7 +36,10 @@ const PromotionManagement = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      await promotionService.create(formData);
+      const payload = { ...formData };
+      if (!payload.start_date) payload.start_date = null;
+      if (!payload.end_date) payload.end_date = null;
+      await promotionService.create(payload);
       setShowModal(false);
       setFormData({
         title: "",

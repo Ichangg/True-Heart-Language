@@ -30,8 +30,8 @@ public class ClassService {
     private final UserRepository userRepository;
 
     public ClassEntity createClass(Map<String, Object> data) {
-        Integer ageGroup = (Integer) data.get("age_group");
-        Integer year = (Integer) data.get("year");
+        Integer ageGroup = data.get("age_group") != null && !data.get("age_group").toString().isEmpty() ? Integer.valueOf(data.get("age_group").toString()) : 0;
+        Integer year = data.get("year") != null && !data.get("year").toString().isEmpty() ? Integer.valueOf(data.get("year").toString()) : java.time.LocalDate.now().getYear();
 
         long existingCount = classRepository.countByAgeGroupAndYear(ageGroup, year);
         int classNumber = data.containsKey("class_number") ? (Integer) data.get("class_number") : (int) (existingCount + 1);
@@ -44,15 +44,15 @@ public class ClassService {
                 .classNumber(classNumber)
                 .build();
 
-        if (data.containsKey("teacher_id") && data.get("teacher_id") != null) {
+        if (data.containsKey("teacher_id") && data.get("teacher_id") != null && !data.get("teacher_id").toString().isEmpty()) {
             classEntity.setTeacherId(Long.valueOf(data.get("teacher_id").toString()));
         }
-        if (data.containsKey("fee_per_session") && data.get("fee_per_session") != null) {
+        if (data.containsKey("fee_per_session") && data.get("fee_per_session") != null && !data.get("fee_per_session").toString().isEmpty()) {
             classEntity.setFeePerSession(new java.math.BigDecimal(data.get("fee_per_session").toString()));
         }
-        if (data.containsKey("sessions_per_month")) classEntity.setSessionsPerMonth((Integer) data.get("sessions_per_month"));
+        if (data.containsKey("sessions_per_month") && data.get("sessions_per_month") != null && !data.get("sessions_per_month").toString().isEmpty()) classEntity.setSessionsPerMonth(Integer.valueOf(data.get("sessions_per_month").toString()));
         if (data.containsKey("schedule_info")) classEntity.setScheduleInfo((String) data.get("schedule_info"));
-        if (data.containsKey("max_students")) classEntity.setMaxStudents((Integer) data.get("max_students"));
+        if (data.containsKey("max_students") && data.get("max_students") != null && !data.get("max_students").toString().isEmpty()) classEntity.setMaxStudents(Integer.valueOf(data.get("max_students").toString()));
         if (data.containsKey("description")) classEntity.setDescription((String) data.get("description"));
 
         return classRepository.save(classEntity);
@@ -115,15 +115,15 @@ public class ClassService {
         ClassEntity classEntity = getClassById(id);
 
         if (data.containsKey("name")) classEntity.setName((String) data.get("name"));
-        if (data.containsKey("teacher_id") && data.get("teacher_id") != null) {
+        if (data.containsKey("teacher_id") && data.get("teacher_id") != null && !data.get("teacher_id").toString().isEmpty()) {
             classEntity.setTeacherId(Long.valueOf(data.get("teacher_id").toString()));
         }
-        if (data.containsKey("fee_per_session") && data.get("fee_per_session") != null) {
+        if (data.containsKey("fee_per_session") && data.get("fee_per_session") != null && !data.get("fee_per_session").toString().isEmpty()) {
             classEntity.setFeePerSession(new java.math.BigDecimal(data.get("fee_per_session").toString()));
         }
-        if (data.containsKey("sessions_per_month")) classEntity.setSessionsPerMonth((Integer) data.get("sessions_per_month"));
+        if (data.containsKey("sessions_per_month") && data.get("sessions_per_month") != null && !data.get("sessions_per_month").toString().isEmpty()) classEntity.setSessionsPerMonth(Integer.valueOf(data.get("sessions_per_month").toString()));
         if (data.containsKey("schedule_info")) classEntity.setScheduleInfo((String) data.get("schedule_info"));
-        if (data.containsKey("max_students")) classEntity.setMaxStudents((Integer) data.get("max_students"));
+        if (data.containsKey("max_students") && data.get("max_students") != null && !data.get("max_students").toString().isEmpty()) classEntity.setMaxStudents(Integer.valueOf(data.get("max_students").toString()));
         if (data.containsKey("description")) classEntity.setDescription((String) data.get("description"));
 
         return classRepository.save(classEntity);

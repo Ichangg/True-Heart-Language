@@ -59,7 +59,7 @@ public class UserService {
                 .status(UserStatus.active)
                 .build();
 
-        if (data.containsKey("date_of_birth") && data.get("date_of_birth") != null) {
+        if (data.containsKey("date_of_birth") && data.get("date_of_birth") != null && !data.get("date_of_birth").toString().trim().isEmpty()) {
             user.setDateOfBirth(java.time.LocalDate.parse((String) data.get("date_of_birth")));
         }
 
@@ -76,7 +76,7 @@ public class UserService {
         if (data.containsKey("avatar")) user.setAvatar((String) data.get("avatar"));
         if (data.containsKey("zalo_id")) user.setZaloId((String) data.get("zalo_id"));
         if (data.containsKey("facebook_id")) user.setFacebookId((String) data.get("facebook_id"));
-        if (data.containsKey("date_of_birth") && data.get("date_of_birth") != null) {
+        if (data.containsKey("date_of_birth") && data.get("date_of_birth") != null && !data.get("date_of_birth").toString().trim().isEmpty()) {
             user.setDateOfBirth(java.time.LocalDate.parse((String) data.get("date_of_birth")));
         }
         if (data.containsKey("password") && data.get("password") != null) {
