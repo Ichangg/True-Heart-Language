@@ -116,7 +116,7 @@ const Dashboard = () => {
           </div>
           <div className="quick-info-list">
             <div className="quick-info-item">
-              <span className="badge badge-green">Hoat động</span>
+              <span className="badge badge-green">Hoạt động</span>
               <span>{stats?.active_classes} lớp</span>
             </div>
             <div className="quick-info-item">
