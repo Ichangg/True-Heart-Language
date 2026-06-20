@@ -53,7 +53,10 @@ export const api = {
   getDashboardStats: (month) => request(`/statistics/financial?month=${month}`),
   recordPayment: (paymentData) => request('/payments', 'POST', paymentData),
   markAttendance: (attendanceData) => request('/attendances/batch', 'POST', attendanceData),
-  generateFees: (classId, month) => request(`/fee-records/generate/${classId}?month=${month}`, 'POST')
+  generateFees: (classId, month) => request(`/fee-records/generate/${classId}?month=${month}`, 'POST'),
+  createTeacher: (data) => request('/users/teacher', 'POST', data),
+  createParent: (data) => request('/users/parent', 'POST', data),
+  createStudent: (data) => request('/users/student', 'POST', data)
 };
 
 export { getToken, setToken, clearToken };

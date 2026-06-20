@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parent Dashboard – English Center</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon" style="background: linear-gradient(135deg, var(--accent5), var(--danger))">P</div>
+        <h2>Phụ huynh</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#overview" class="active" data-page="overview">📊 Tổng quan Học tập</a></li>
+        <li><a href="#finance" data-page="finance">💳 Học phí & Thanh toán</a></li>
+        <li><a href="#history" data-page="history">📜 Lịch sử giao dịch</a></li>
+        <li><a href="#inbox" data-page="inbox">📬 Hộp thư Thông báo</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://ui-avatars.com/api/?name=Tran+Van+C&background=ffa657&color=fff" alt="Parent" class="avatar">
+          <div class="user-info">
+            <div style="font-size:13px;font-weight:600">Trần Văn C</div>
+            <div style="font-size:11px;color:var(--text-muted)">Tài khoản Phụ huynh</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <header class="topbar">
+        <div class="page-title" id="topbar-title">Tổng quan Học tập</div>
+        <div class="topbar-actions">
+          <select id="childSelector" class="form-control" style="width: auto; height: 38px;">
+            <option value="1">👦 Nguyễn Văn A (Lớp 3.1)</option>
+            <option value="2">👧 Trần Thị B (Lớp 4.2)</option>
+          </select>
+          <button class="btn btn-outline">🔔 Thông báo</button>
+          <a href="/login.html" class="btn btn-outline" style="text-decoration:none">Đăng xuất</a>
+        </div>
+      </header>
+
+      <div class="content-wrapper">
+        
+        <!-- OVERVIEW PAGE -->
+        <section id="overview" class="page-section active">
+          <div class="stats-grid">
+            <div class="stat-card blue">
+              <div class="stat-icon">✅</div>
+              <div class="stat-title">Đã học (Tháng)</div>
+              <div class="stat-value">6 <span style="font-size: 14px; font-weight:normal; color: var(--text-muted)">buổi</span></div>
+            </div>
+            <div class="stat-card purple">
+              <div class="stat-icon">❌</div>
+              <div class="stat-title">Vắng mặt</div>
+              <div class="stat-value" style="color: var(--danger)">1 <span style="font-size: 14px; font-weight:normal; color: var(--text-muted)">buổi</span></div>
+            </div>
+            <div class="stat-card orange">
+              <div class="stat-icon">👨‍🏫</div>
+              <div class="stat-title">Giáo viên phụ trách</div>
+              <div class="stat-value" style="font-size: 20px;">Lê Văn Giao</div>
+            </div>
+          </div>
+
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Tình hình học tập & Điểm danh</h3>
+              <button class="btn btn-outline" style="color: var(--danger); border-color: var(--danger);">Xin nghỉ phép</button>
+            </div>
+            <table id="parentAttendanceTable">
+              <thead>
+                <tr>
+                  <th>Ngày học</th>
+                  <th>Nội dung</th>
+                  <th>Giáo viên nhận xét</th>
+                  <th>Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody id="parentAttendanceBody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FINANCE PAGE -->
+        <section id="finance" class="page-section">
+          <div class="stats-grid">
+            <div class="stat-card orange" style="border-color: var(--danger); box-shadow: 0 0 15px rgba(248,81,73,0.2);">
+              <div class="stat-icon" style="background: rgba(248,81,73,0.15); color: var(--danger);">💰</div>
+              <div class="stat-title" style="color: var(--danger);">Tổng nợ học phí</div>
+              <div class="stat-value" style="color: var(--danger);">700,000 đ</div>
+            </div>
+          </div>
+
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Chi tiết Học phí</h3>
+              <button class="btn btn-primary" style="background: var(--accent3);">💳 Thanh toán Online (VNPay/Momo)</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tháng</th>
+                  <th>Học phí gốc</th>
+                  <th>Khuyến mãi / Giảm giá</th>
+                  <th>Cần thanh toán</th>
+                  <th>Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tháng 6/2026</td>
+                  <td>1,500,000 đ</td>
+                  <td>-300,000 đ (Voucher)</td>
+                  <td>1,200,000 đ</td>
+                  <td><span class="badge warning">Chưa đóng</span></td>
+                </tr>
+                <tr>
+                  <td>Tháng 5/2026</td>
+                  <td>1,500,000 đ</td>
+                  <td>0 đ</td>
+                  <td>1,500,000 đ</td>
+                  <td><span class="badge active">Đã hoàn thành</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- HISTORY PAGE -->
+        <section id="history" class="page-section">
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Lịch sử giao dịch</h3>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Mã giao dịch</th>
+                  <th>Ngày thanh toán</th>
+                  <th>Số tiền</th>
+                  <th>Phương thức</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>TXN-839210</td>
+                  <td>05/05/2026</td>
+                  <td>1,500,000 đ</td>
+                  <td>Chuyển khoản (Vietcombank)</td>
+                  <td><button class="btn btn-outline btn-sm">Xem biên lai</button></td>
+                </tr>
+                <tr>
+                  <td>TXN-728192</td>
+                  <td>04/04/2026</td>
+                  <td>1,500,000 đ</td>
+                  <td>Tiền mặt tại Trung tâm</td>
+                  <td><button class="btn btn-outline btn-sm">Xem biên lai</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- INBOX PAGE -->
+        <section id="inbox" class="page-section">
+          <div class="card-glass" style="padding: 30px;">
+            <div class="table-header">
+              <h3>Hộp thư Thông báo</h3>
+              <span class="badge" style="background: var(--danger)">1 tin chưa đọc</span>
+            </div>
+            
+            <div class="inbox-list">
+              <!-- Tin nhắn chưa đọc -->
+              <div class="inbox-item unread">
+                <div class="inbox-icon">💰</div>
+                <div class="inbox-content" style="flex:1">
+                  <h4>Thông báo thu học phí tháng 6</h4>
+                  <p>Kính gửi phụ huynh, trung tâm xin thông báo học phí tháng 6 của bé là 1.500.000đ. Vui lòng thanh toán trước ngày 05/06.</p>
+                  <div class="inbox-time">Hôm nay, 08:30</div>
+                </div>
+              </div>
+
+              <!-- Tin nhắn đã đọc -->
+              <div class="inbox-item">
+                <div class="inbox-icon" style="background: var(--accent2)">🏫</div>
+                <div class="inbox-content" style="flex:1">
+                  <h4>Kết quả học tập Tuần 2 - Lớp 3.1</h4>
+                  <p>Bé Nguyễn Bảo An tuần qua đã rất cố gắng phát biểu. Tuy nhiên phần phát âm cần luyện tập thêm ở nhà.</p>
+                  <div class="inbox-time">Tuần trước</div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/parent.js"></script>
+</body>
+</html>

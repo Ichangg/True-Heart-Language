@@ -1,4 +1,4 @@
-# Walkthrough: Hoàn thiện API Backend - Giai đoạn 1
+Hoàn thiện API Backend - Giai đoạn 1
 
 Trong lần triển khai này, tôi đã ưu tiên hoàn thiện các API Backend cốt lõi thuộc **Giai đoạn 1** theo kế hoạch, bao gồm quản lý Lớp học, Điểm danh, và Gen học phí.
 

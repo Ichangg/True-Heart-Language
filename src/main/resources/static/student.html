@@ -1,44 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Portal – English Center</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Student Dashboard – English Center</title>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <nav class="navbar">
-    <div class="logo">English Center – Student</div>
-    <ul class="nav-links">
-      <li><a href="student.html">Dashboard</a></li>
-      <li><a href="login.html">Logout</a></li>
-    </ul>
-  </nav>
 
-  <div class="student-container" style="padding:2rem;">
-    <h2>My Class Information</h2>
-    <div id="classInfo" class="card" style="background:rgba(255,255,255,0.12);padding:1.5rem;border-radius:12px;backdrop-filter:blur(8px);margin-bottom:2rem;">
-      <p><strong>Class:</strong> <span id="className">Loading...</span></p>
-      <p><strong>Teacher:</strong> <span id="teacherName">Loading...</span></p>
-      <p><strong>Sessions Attended:</strong> <span id="attended">0</span></p>
-      <p><strong>Sessions Missed:</strong> <span id="missed">0</span></p>
-    </div>
-    <h3>Attendance Details</h3>
-    <table class="data-table" style="width:100%;border-collapse:collapse;">
-      <thead><tr><th>Date</th><th>Status</th></tr></thead>
-      <tbody id="attendanceBody"></tbody>
-    </table>
+  <div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon" style="background: linear-gradient(135deg, var(--accent4), var(--accent))">S</div>
+        <h2>Học sinh</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#overview" class="active" data-page="overview">📊 Tổng quan</a></li>
+        <li><a href="#history" data-page="history">📅 Lịch sử học tập</a></li>
+        <li><a href="#teacher-info" data-page="teacher-info">👨‍🏫 Giảng viên</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://ui-avatars.com/api/?name=Nguyen+Van+A&background=d2a8ff&color=fff" alt="Student" class="avatar">
+          <div class="user-info">
+            <div style="font-size:13px;font-weight:600">Nguyễn Văn A</div>
+            <div style="font-size:11px;color:var(--text-muted)">Lớp: 3.1</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <header class="topbar">
+        <div class="page-title" id="topbar-title">Tổng quan</div>
+        <div class="topbar-actions">
+          <button class="btn btn-outline">🔔 Thông báo</button>
+          <a href="/login.html" class="btn btn-outline" style="text-decoration:none">Đăng xuất</a>
+        </div>
+      </header>
+
+      <div class="content-wrapper">
+        
+        <!-- OVERVIEW PAGE -->
+        <section id="overview" class="page-section active">
+          
+          <div style="margin-bottom: 24px;">
+            <h2 style="font-size: 24px; font-weight: 700;">Chào mừng bạn trở lại, Văn A! 👋</h2>
+            <p style="color: var(--text-muted);">Hãy cùng xem tiến độ học tập của bạn tháng này nhé.</p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card blue">
+              <div class="stat-icon">✅</div>
+              <div class="stat-title">Đã học (Tháng)</div>
+              <div class="stat-value">6 <span style="font-size: 14px; font-weight:normal; color: var(--text-muted)">buổi</span></div>
+            </div>
+            <div class="stat-card purple">
+              <div class="stat-icon">❌</div>
+              <div class="stat-title">Vắng mặt</div>
+              <div class="stat-value" style="color: var(--danger)">1 <span style="font-size: 14px; font-weight:normal; color: var(--text-muted)">buổi</span></div>
+            </div>
+            <div class="stat-card green">
+              <div class="stat-icon">🏫</div>
+              <div class="stat-title">Lớp hiện tại</div>
+              <div class="stat-value">Lớp 3.1</div>
+            </div>
+          </div>
+
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Điểm danh gần đây</h3>
+              <a href="#history" class="btn btn-outline btn-sm">Xem tất cả</a>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Ngày học</th>
+                  <th>Chủ đề (Nội dung)</th>
+                  <th>Giáo viên nhận xét</th>
+                  <th>Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>20/06/2026</td>
+                  <td>Unit 5: Animals and Habitats</td>
+                  <td>Học sinh tích cực phát biểu.</td>
+                  <td><span class="badge active">Có mặt</span></td>
+                </tr>
+                <tr>
+                  <td>18/06/2026</td>
+                  <td>Unit 4: Review</td>
+                  <td>-</td>
+                  <td><span class="badge closed">Vắng mặt</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- HISTORY PAGE -->
+        <section id="history" class="page-section">
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Lịch sử học tập toàn khóa</h3>
+            </div>
+            <table id="historyTable">
+              <thead>
+                <tr>
+                  <th>Ngày học</th>
+                  <th>Nội dung / Bài tập</th>
+                  <th>Đánh giá</th>
+                  <th>Điểm danh</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- TEACHER INFO PAGE -->
+        <section id="teacher-info" class="page-section">
+          <div class="card-glass" style="max-width: 600px; margin: 0 auto; text-align: center; padding: 40px;">
+            <img src="https://ui-avatars.com/api/?name=Le+Van+Giao&background=2f81f7&color=fff" alt="Teacher" class="avatar" style="width: 100px; height: 100px; margin-bottom: 20px;">
+            <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Lê Văn Giao</h2>
+            <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 24px;">Giáo viên phụ trách lớp 3.1</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 12px; text-align: left; background: var(--bg-color); padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">Email:</span>
+                <span style="font-weight: 500;">gv.giao@trungtam.com</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-muted);">Số điện thoại:</span>
+                <span style="font-weight: 500;">0901234567</span>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" style="margin-top: 24px; width: 100%;">Nhắn tin cho Giáo viên</button>
+          </div>
+        </section>
+
+      </div>
+    </main>
   </div>
 
-  <footer class="footer">
-    <p>&copy; 2024 English Center. Student Portal.</p>
-  </footer>
-
-  <script src="assets/js/api.js"></script>
-  <script src="assets/js/ui.js"></script>
   <script src="assets/js/student.js"></script>
 </body>
 </html>

@@ -1,36 +1,203 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Teacher Portal – English Center</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Teacher Dashboard – English Center</title>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <nav class="navbar">
-    <div class="logo">English Center – Teacher</div>
-    <ul class="nav-links">
-      <li><a href="teacher.html">Dashboard</a></li>
-      <li><a href="login.html">Logout</a></li>
-    </ul>
-  </nav>
 
-  <div class="teacher-container" style="padding:2rem;">
-    <h2>My Classes</h2>
-    <div id="myClasses" class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;">
-      <!-- Class cards will be injected here -->
-    </div>
+  <div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon" style="background: linear-gradient(135deg, var(--accent3), var(--accent5))">T</div>
+        <h2>Giáo viên</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#overview" class="active" data-page="overview">📊 Tổng quan</a></li>
+        <li><a href="#myclasses" data-page="myclasses">🏫 Lớp đang dạy</a></li>
+        <li><a href="#students-list" data-page="students-list">👥 Danh sách Học sinh</a></li>
+        <li><a href="#attendance" data-page="attendance">✅ Điểm danh</a></li>
+        <li><a href="#teaching-history" data-page="teaching-history">📋 Lịch sử Giảng dạy</a></li>
+        <li><a href="#class-notice" data-page="class-notice">🔔 Gửi Thông báo</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://ui-avatars.com/api/?name=Le+Van+Giao&background=3fb950&color=fff" alt="Teacher" class="avatar">
+          <div class="user-info">
+            <div style="font-size:13px;font-weight:600">Lê Văn Giao</div>
+            <div style="font-size:11px;color:var(--text-muted)">Giáo viên Tiếng Anh</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <header class="topbar">
+        <div class="page-title" id="topbar-title">Tổng quan</div>
+        <div class="topbar-actions">
+          <button class="btn btn-outline">🔔 Thông báo</button>
+          <a href="/login.html" class="btn btn-outline" style="text-decoration:none">Đăng xuất</a>
+        </div>
+      </header>
+
+      <div class="content-wrapper">
+        
+        <!-- OVERVIEW PAGE -->
+        <section id="overview" class="page-section active">
+          <div class="stats-grid">
+            <div class="stat-card green">
+              <div class="stat-icon">🏫</div>
+              <div class="stat-title">Lớp đang dạy</div>
+              <div class="stat-value">2</div>
+            </div>
+            <div class="stat-card blue">
+              <div class="stat-icon">✅</div>
+              <div class="stat-title">Buổi đã dạy (Tháng)</div>
+              <div class="stat-value">14</div>
+            </div>
+          </div>
+
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Lịch dạy sắp tới</h3>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Lớp</th>
+                  <th>Thời gian</th>
+                  <th>Phòng học</th>
+                  <th>Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>3.1</strong></td>
+                  <td>Hôm nay, 18:00 - 19:30</td>
+                  <td>Phòng 101</td>
+                  <td><span class="badge warning">Sắp diễn ra</span></td>
+                </tr>
+                <tr>
+                  <td><strong>4.2</strong></td>
+                  <td>Ngày mai, 18:00 - 19:30</td>
+                  <td>Phòng 102</td>
+                  <td><span class="badge active">Đã lên lịch</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- MY CLASSES PAGE -->
+        <section id="myclasses" class="page-section">
+          <div class="class-grid">
+            <!-- Class Card 1 -->
+            <div class="class-card">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h3>Lớp 3.1</h3>
+                <span class="badge active">Đang mở</span>
+              </div>
+              <p>Khối: Lớp 3 | Sĩ số: 20 học sinh</p>
+              <div style="display:flex; gap:10px; margin-top:20px;">
+                <button class="btn btn-primary" onclick="window.location.hash='#attendance'" style="flex:1">Điểm danh</button>
+                <button class="btn btn-outline">Gửi thông báo</button>
+              </div>
+            </div>
+
+            <!-- Class Card 2 -->
+            <div class="class-card">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h3>Lớp 4.2</h3>
+                <span class="badge active">Đang mở</span>
+              </div>
+              <p>Khối: Lớp 4 | Sĩ số: 15 học sinh</p>
+              <div style="display:flex; gap:10px; margin-top:20px;">
+                <button class="btn btn-primary" onclick="window.location.hash='#attendance'" style="flex:1">Điểm danh</button>
+                <button class="btn btn-outline">Gửi thông báo</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ATTENDANCE PAGE -->
+        <section id="attendance" class="page-section">
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Điểm danh: Lớp 3.1 (Hôm nay)</h3>
+              <div class="table-actions">
+                <button class="btn btn-primary">Lưu điểm danh</button>
+              </div>
+            </div>
+            
+            <div class="attendance-grid" id="attendanceList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- STUDENTS LIST PAGE -->
+        <section id="students-list" class="page-section">
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Danh bạ Học sinh - Lớp 3.1</h3>
+            </div>
+            <div class="class-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+              <div class="class-card" style="padding: 16px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                  <img src="https://ui-avatars.com/api/?name=Nguyen+Bao+An" class="avatar">
+                  <div>
+                    <h4 style="margin:0;">Nguyễn Bảo An</h4>
+                    <p style="margin:0; font-size:12px; color:var(--text-muted)">HS Giỏi</p>
+                  </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:8px;">
+                  <div style="font-size:12px; color:var(--text-muted)">Phụ huynh: Nguyễn Văn Bình</div>
+                  <div style="font-weight:bold; color:var(--accent)">📞 0908.000.001</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TEACHING HISTORY PAGE -->
+        <section id="teaching-history" class="page-section">
+          <div class="stats-grid">
+            <div class="stat-card green">
+              <div class="stat-icon">🎓</div>
+              <div class="stat-title">Số buổi đã dạy (Tháng 6)</div>
+              <div class="stat-value">18 <span style="font-size: 14px; font-weight:normal;">buổi</span></div>
+            </div>
+          </div>
+          <div class="table-card">
+            <div class="table-header"><h3>Lịch sử Chấm công</h3></div>
+            <table>
+              <thead><tr><th>Ngày dạy</th><th>Lớp</th><th>Phòng học</th><th>Trạng thái Điểm danh</th></tr></thead>
+              <tbody>
+                <tr><td>Hôm qua, 18:00</td><td>Lớp 3.1</td><td>Phòng 101</td><td><span class="badge active">Đã nộp</span></td></tr>
+                <tr><td>15/06/2026</td><td>Lớp 4.2</td><td>Phòng 102</td><td><span class="badge active">Đã nộp</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- CLASS NOTICE PAGE -->
+        <section id="class-notice" class="page-section">
+          <div class="card-glass" style="padding: 30px; max-width: 600px; margin: 0 auto;">
+            <h3 style="margin-bottom: 20px;">Gửi Thông báo cho Lớp</h3>
+            <div class="form-group"><label>Chọn lớp</label><select class="form-control"><option>Lớp 3.1</option><option>Lớp 4.2</option></select></div>
+            <div class="form-group"><label>Nội dung dặn dò</label><textarea class="form-control" rows="5" placeholder="Nhắc nhở học sinh làm bài tập..."></textarea></div>
+            <button class="btn btn-primary" style="width: 100%" onclick="alert('Đã gửi thông báo đến phụ huynh của lớp!')">Gửi tới Phụ huynh</button>
+          </div>
+        </section>
+
+      </div>
+    </main>
   </div>
 
-  <footer class="footer">
-    <p>&copy; 2024 English Center. Teacher Portal.</p>
-  </footer>
-
-  <script src="assets/js/api.js"></script>
-  <script src="assets/js/ui.js"></script>
   <script src="assets/js/teacher.js"></script>
 </body>
 </html>

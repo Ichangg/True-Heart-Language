@@ -1,108 +1,347 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Dashboard – English Center</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Admin Dashboard – Hệ thống Quản lý</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- FontAwesome for icons (optional, using emojis as fallback for now) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="logo">English Center – Admin</div>
-    <ul class="nav-links">
-      <li><a href="admin.html">Dashboard</a></li>
-      <li><a href="login.html">Logout</a></li>
-    </ul>
-  </nav>
 
-  <div class="admin-container" style="display:flex;min-height:calc(100vh - 70px);">
-    <aside class="sidebar" style="width:250px;background:rgba(255,255,255,0.08);backdrop-filter:blur(12px);padding:1rem;">
-      <ul style="list-style:none;padding:0;">
-        <li><a href="#stats" class="sidebar-link">Statistics</a></li>
-        <li><a href="#classes" class="sidebar-link">Classes</a></li>
-        <li><a href="#teachers" class="sidebar-link">Teachers</a></li>
-        <li><a href="#students" class="sidebar-link">Students</a></li>
-        <li><a href="#fees" class="sidebar-link">Fees</a></li>
-        <li><a href="#announcements" class="sidebar-link">Announcements</a></li>
+  <div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon">E</div>
+        <h2>English Center</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="#overview" class="active" data-page="overview">📊 Tổng quan</a></li>
+        <li><a href="#classes" data-page="classes">🏫 Quản lý Lớp học</a></li>
+        <li><a href="#class-wizard" data-page="class-wizard">✨ Tạo Lớp Nâng cao</a></li>
+        <li><a href="#users" data-page="users">👥 Quản lý Người dùng</a></li>
+        <li><a href="#fees" data-page="fees">💰 Quản lý Học phí</a></li>
+        <li><a href="#debts" data-page="debts">📉 Quản lý Công nợ</a></li>
+        <li><a href="#payments" data-page="payments">💵 Nhập Thanh toán</a></li>
+        <li><a href="#notifications" data-page="notifications">🔔 Gửi Thông báo</a></li>
+        <li><a href="#integrations" data-page="integrations">⚙️ Cài đặt Tích hợp</a></li>
       </ul>
-    </aside>
-
-    <main class="content" style="flex:1;padding:2rem;overflow:auto;">
-      <section id="stats" class="card" style="background:rgba(255,255,255,0.12);margin-bottom:2rem;backdrop-filter:blur(8px);padding:1.5rem;border-radius:12px;">
-        <h2>Statistics Overview</h2>
-        <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;">
-          <div class="stat-card" style="background:rgba(255,255,255,0.15);padding:1rem;border-radius:8px;">
-            <h3>Total Classes</h3>
-            <p id="totalClasses">0</p>
-          </div>
-          <div class="stat-card" style="background:rgba(255,255,255,0.15);padding:1rem;border-radius:8px;">
-            <h3>Total Teachers</h3>
-            <p id="totalTeachers">0</p>
-          </div>
-          <div class="stat-card" style="background:rgba(255,255,255,0.15);padding:1rem;border-radius:8px;">
-            <h3>Total Students</h3>
-            <p id="totalStudents">0</p>
-          </div>
-          <div class="stat-card" style="background:rgba(255,255,255,0.15);padding:1rem;border-radius:8px;">
-            <h3>Revenue (This Month)</h3>
-            <p id="revenueMonth">$0</p>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <img src="https://ui-avatars.com/api/?name=Admin+User&background=2f81f7&color=fff" alt="Admin" class="avatar">
+          <div class="user-info">
+            <div style="font-size:13px;font-weight:600">Admin User</div>
+            <div style="font-size:11px;color:var(--text-muted)">Quản trị viên</div>
           </div>
         </div>
-      </section>
+      </div>
+    </aside>
 
-      <section id="classes" class="card" style="background:rgba(255,255,255,0.12);margin-bottom:2rem;backdrop-filter:blur(8px);padding:1.5rem;border-radius:12px;">
-        <h2>Class Management</h2>
-        <button class="cta-btn" id="addClassBtn">Add New Class</button>
-        <table class="data-table" style="width:100%;margin-top:1rem;border-collapse:collapse;">
-          <thead><tr><th>Year</th><th>Grade</th><th>Section</th><th>Teachers</th><th>Students</th><th>Actions</th></tr></thead>
-          <tbody id="classTableBody"></tbody>
-        </table>
-      </section>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <header class="topbar">
+        <div class="page-title" id="topbar-title">Tổng quan hệ thống</div>
+        <div class="topbar-actions">
+          <button class="btn btn-outline">🔔 Thông báo</button>
+          <a href="/login.html" class="btn btn-outline" style="text-decoration:none">Đăng xuất</a>
+        </div>
+      </header>
 
-      <section id="teachers" class="card" style="background:rgba(255,255,255,0.12);margin-bottom:2rem;backdrop-filter:blur(8px);padding:1.5rem;border-radius:12px;">
-        <h2>Teacher Management</h2>
-        <button class="cta-btn" id="addTeacherBtn">Add Teacher</button>
-        <table class="data-table" style="width:100%;margin-top:1rem;border-collapse:collapse;">
-          <thead><tr><th>Name</th><th>Email</th><th>Assigned Classes</th><th>Actions</th></tr></thead>
-          <tbody id="teacherTableBody"></tbody>
-        </table>
-      </section>
+      <div class="content-wrapper">
+        
+        <!-- OVERVIEW PAGE -->
+        <section id="overview" class="page-section active">
+          <div class="stats-grid">
+            <div class="stat-card blue">
+              <div class="stat-icon">🏫</div>
+              <div class="stat-title">Tổng số Lớp</div>
+              <div class="stat-value" id="statClasses">12</div>
+            </div>
+            <div class="stat-card green">
+              <div class="stat-icon">👦</div>
+              <div class="stat-title">Tổng Học sinh</div>
+              <div class="stat-value" id="statStudents">245</div>
+            </div>
+            <div class="stat-card purple">
+              <div class="stat-icon">👨‍🏫</div>
+              <div class="stat-title">Giáo viên</div>
+              <div class="stat-value" id="statTeachers">18</div>
+            </div>
+            <div class="stat-card orange">
+              <div class="stat-icon">💰</div>
+              <div class="stat-title">Doanh thu dự kiến</div>
+              <div class="stat-value" id="statRevenue">120M đ</div>
+            </div>
+          </div>
 
-      <section id="students" class="card" style="background:rgba(255,255,255,0.12);margin-bottom:2rem;backdrop-filter:blur(8px);padding:1.5rem;border-radius:12px;">
-        <h2>Student Management</h2>
-        <button class="cta-btn" id="addStudentBtn">Add Student</button>
-        <table class="data-table" style="width:100%;margin-top:1rem;border-collapse:collapse;">
-          <thead><tr><th>Name</th><th>Parent</th><th>Class</th><th>Attendance</th><th>Actions</th></tr></thead>
-          <tbody id="studentTableBody"></tbody>
-        </table>
-      </section>
+          <div class="charts-grid">
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Biểu đồ Tài chính (Tháng)</h3>
+              </div>
+              <div class="chart-container">
+                <canvas id="financeChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-header">
+                <h3>Trạng thái Học phí</h3>
+              </div>
+              <div class="chart-container">
+                <canvas id="feeStatusChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <section id="fees" class="card" style="background:rgba(255,255,255,0.12);margin-bottom:2rem;backdrop-filter:blur(8px);padding:1.5rem;border-radius:12px;">
-        <h2>Fee Records</h2>
-        <button class="cta-btn" id="addFeeBtn">Record Payment</button>
-        <table class="data-table" style="width:100%;margin-top:1rem;border-collapse:collapse;">
-          <thead><tr><th>Student</th><th>Month</th><th>Amount Due</th><th>Discount %</th><th>Paid</th><th>Actions</th></tr></thead>
-          <tbody id="feeTableBody"></tbody>
-        </table>
-      </section>
+        <!-- CLASSES PAGE -->
+        <section id="classes" class="page-section">
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Danh sách Lớp học</h3>
+              <div class="table-actions">
+                <button class="btn btn-primary" onclick="openModal('classModal')">➕ Tạo lớp mới</button>
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tên Lớp</th>
+                  <th>Khối/Năm</th>
+                  <th>Sĩ số</th>
+                  <th>Học phí/buổi</th>
+                  <th>Trạng thái</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="classTableBody">
+                <!-- Data populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
 
-      <section id="announcements" class="card" style="background:rgba(255,255,255,0.12);margin-bottom:2rem;backdrop-filter:blur(8px);padding:1.5rem;border-radius:12px;">
-        <h2>Public Announcements</h2>
-        <button class="cta-btn" id="addAnnouncementBtn">Create Announcement</button>
-        <div id="announcementList" style="margin-top:1rem;"></div>
-      </section>
+        <!-- STUDENTS PAGE -->
+        <section id="students" class="page-section">
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Danh sách Học sinh</h3>
+              <div class="table-actions">
+                <button class="btn btn-primary" onclick="openModal('studentModal')">➕ Thêm Học sinh</button>
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Học sinh</th>
+                  <th>Lớp đang học</th>
+                  <th>Phụ huynh liên hệ</th>
+                  <th>Trạng thái</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="studentTableBody">
+                <!-- Data populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- TEACHERS PAGE -->
+        <section id="teachers" class="page-section">
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Danh sách Giáo viên</h3>
+              <div class="table-actions">
+                <button class="btn btn-primary" onclick="openModal('teacherModal')">➕ Thêm Giáo viên</button>
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Giáo viên</th>
+                  <th>Lớp phụ trách</th>
+                  <th>Số điện thoại</th>
+                  <th>Trạng thái</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="teacherTableBody">
+                <!-- Data populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- FEES PAGE -->
+        <section id="fees" class="page-section">
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Học phí cần thu (Tháng này)</h3>
+              <div class="table-actions">
+                <button class="btn btn-outline">Tải báo cáo Excel</button>
+              </div>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Học sinh</th>
+                  <th>Lớp</th>
+                  <th>Cần đóng</th>
+                  <th>Đã thu</th>
+                  <th>Còn nợ</th>
+                  <th>Trạng thái</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="feeTableBody">
+                <!-- Data populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- CLASS WIZARD PAGE -->
+        <section id="class-wizard" class="page-section">
+          <div class="card-glass" style="padding: 30px;">
+            <div class="wizard-header">
+              <div class="wizard-step active">1. Thông tin</div>
+              <div class="wizard-step">2. Giáo viên</div>
+              <div class="wizard-step">3. Học sinh</div>
+              <div class="wizard-step">4. Học phí</div>
+            </div>
+            <div class="wizard-body">
+              <div class="wizard-panel active" id="step1">
+                <h3>Bước 1: Thông tin Lớp học</h3>
+                <div class="form-group"><label>Tên lớp</label><input type="text" class="form-control" placeholder="VD: Lớp 5.1"></div>
+                <div class="form-group"><label>Khóa học</label><input type="text" class="form-control" placeholder="VD: Tiếng Anh Tiểu Học"></div>
+                <button class="btn btn-primary" onclick="nextWizardStep(2)">Tiếp tục</button>
+              </div>
+              <div class="wizard-panel" id="step2">
+                <h3>Bước 2: Phân bổ Giáo viên</h3>
+                <div class="form-group"><label>Chọn Giáo viên</label><select class="form-control"><option>Trần Thị Lan</option><option>Lê Văn Minh</option></select></div>
+                <div style="display:flex; gap:10px;"><button class="btn btn-outline" onclick="nextWizardStep(1)">Quay lại</button><button class="btn btn-primary" onclick="nextWizardStep(3)">Tiếp tục</button></div>
+              </div>
+              <div class="wizard-panel" id="step3">
+                <h3>Bước 3: Gắn Học sinh</h3>
+                <p>Kéo thả học sinh từ Danh sách chờ sang lớp này.</p>
+                <div style="height: 100px; border: 1px dashed var(--border); display:flex; align-items:center; justify-content:center; margin-bottom:20px; color:var(--text-muted)">Khu vực kéo thả (Mock)</div>
+                <div style="display:flex; gap:10px;"><button class="btn btn-outline" onclick="nextWizardStep(2)">Quay lại</button><button class="btn btn-primary" onclick="nextWizardStep(4)">Tiếp tục</button></div>
+              </div>
+              <div class="wizard-panel" id="step4">
+                <h3>Bước 4: Cấu hình Học phí & Giảm giá</h3>
+                <div class="form-group"><label>Học phí gốc (VNĐ)</label><input type="number" class="form-control" value="1500000"></div>
+                <div style="display:flex; gap:10px;"><button class="btn btn-outline" onclick="nextWizardStep(3)">Quay lại</button><button class="btn btn-primary" onclick="alert('Lớp học đã được tạo thành công!'); window.location.hash='#classes'">Hoàn tất Tạo lớp</button></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- DEBTS PAGE -->
+        <section id="debts" class="page-section">
+          <div class="table-card">
+            <div class="table-header">
+              <h3>Quản lý Công nợ Toàn Trung tâm</h3>
+              <button class="btn btn-primary" style="background: var(--danger)">Gửi nhắc nợ hàng loạt</button>
+            </div>
+            <table>
+              <thead><tr><th>Học sinh</th><th>Lớp</th><th>Tháng</th><th style="color:var(--danger)">Công nợ</th><th>Trạng thái</th></tr></thead>
+              <tbody>
+                <tr><td>Nguyễn Bảo An</td><td>Lớp 3.1</td><td>Tháng 6</td><td style="color:var(--danger); font-weight:bold">1,500,000 đ</td><td><span class="badge warning">Quá hạn</span></td></tr>
+                <tr><td>Phạm Minh Khoa</td><td>Lớp 4.2</td><td>Tháng 6</td><td style="color:var(--danger); font-weight:bold">700,000 đ</td><td><span class="badge warning">Còn nợ</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- PAYMENTS PAGE -->
+        <section id="payments" class="page-section">
+          <div class="card-glass" style="padding: 30px; max-width: 600px; margin: 0 auto;">
+            <h3 style="margin-bottom: 20px;">Nhập Thanh toán (Thu ngân)</h3>
+            <div class="form-group">
+              <label>Tìm kiếm Phụ huynh / Học sinh (SĐT hoặc Tên)</label>
+              <input type="text" class="form-control" placeholder="Nhập số điện thoại...">
+            </div>
+            <div class="form-group">
+              <label>Học sinh thanh toán</label>
+              <select class="form-control"><option>Nguyễn Bảo An - Nợ: 1,500,000 đ</option></select>
+            </div>
+            <div class="form-group"><label>Số tiền thu (VNĐ)</label><input type="number" class="form-control" value="1500000"></div>
+            <div class="form-group"><label>Hình thức</label><select class="form-control"><option>Tiền mặt</option><option>Chuyển khoản</option></select></div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="alert('Đã ghi nhận thanh toán và in biên lai!')">Xác nhận & In biên lai</button>
+          </div>
+        </section>
+
+        <!-- NOTIFICATIONS PAGE -->
+        <section id="notifications" class="page-section">
+          <div class="card-glass" style="padding: 30px;">
+            <h3 style="margin-bottom: 20px;">Gửi Thông báo (Đa kênh)</h3>
+            <div class="form-group"><label>Gửi đến</label><select class="form-control"><option>Tất cả Phụ huynh</option><option>Học sinh lớp 3.1</option></select></div>
+            <div class="form-group"><label>Kênh gửi</label><select class="form-control"><option>Hộp thư trên App (Miễn phí)</option><option>Zalo ZNS</option><option>SMS</option></select></div>
+            <div class="form-group"><label>Tiêu đề</label><input type="text" class="form-control" placeholder="Nhập tiêu đề..."></div>
+            <div class="form-group"><label>Nội dung</label><textarea class="form-control" rows="5" placeholder="Chào {Ten_Phu_Huynh}, hiện tại {Ten_HS} đang còn nợ..."></textarea></div>
+            <button class="btn btn-primary">Gửi thông báo</button>
+          </div>
+        </section>
+
+        <!-- INTEGRATIONS PAGE -->
+        <section id="integrations" class="page-section">
+          <div class="card-glass" style="padding: 30px; max-width: 600px; margin: 0 auto;">
+            <h3 style="margin-bottom: 20px;">Cài đặt Tích hợp Hệ thống</h3>
+            <div class="form-group"><label>Zalo OA - App ID</label><input type="text" class="form-control" value="1234567890123456789"></div>
+            <div class="form-group"><label>Zalo OA - Access Token</label><input type="password" class="form-control" value="************************"></div>
+            <div class="form-group"><label>VNPay - Merchant Code</label><input type="text" class="form-control" value="VNPAY_EC_2026"></div>
+            <div style="display:flex; gap:10px; margin-top:20px;">
+              <button class="btn btn-outline" style="flex:1" onclick="alert('Kết nối Zalo thành công!')">Test Kết nối</button>
+              <button class="btn btn-primary" style="flex:1">Lưu cấu hình</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </main>
   </div>
 
-  <footer class="footer">
-    <p>&copy; 2024 English Center. Admin Portal.</p>
-  </footer>
+  <!-- MODALS -->
+  <!-- Add Class Modal -->
+  <div id="classModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Tạo Lớp học mới</h3>
+        <button class="btn-close" onclick="closeModal('classModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Tên Lớp (VD: 3.1)</label>
+          <input type="text" class="form-control" placeholder="Nhập tên lớp">
+        </div>
+        <div class="form-group">
+          <label>Khối / Độ tuổi</label>
+          <select class="form-control">
+            <option>Lớp 1</option>
+            <option>Lớp 2</option>
+            <option>Lớp 3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Học phí / Buổi (VNĐ)</label>
+          <input type="number" class="form-control" value="100000">
+        </div>
+        <div class="form-group">
+          <label>Sĩ số tối đa</label>
+          <input type="number" class="form-control" value="20">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('classModal')">Hủy</button>
+        <button class="btn btn-primary" onclick="closeModal('classModal')">Lưu Lớp Học</button>
+      </div>
+    </div>
+  </div>
 
-  <script type="module" src="assets/js/api.js"></script>
-  <script type="module" src="assets/js/ui.js"></script>
-  <script type="module" src="assets/js/admin.js"></script>
+  <!-- Scripts -->
+  <script src="assets/js/admin.js"></script>
 </body>
 </html>
